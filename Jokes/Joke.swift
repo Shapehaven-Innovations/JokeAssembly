@@ -1,10 +1,4 @@
-
-//
 //  Joke.swift
-//  Jokes
-//
-//  Created by user on 5/15/24.
-//
 
 import Foundation
 

@@ -1,3 +1,5 @@
+//FavoritesView.swift
+
 import SwiftUI
 
 struct FavoritesView: View {
@@ -22,7 +24,7 @@ struct FavoritesView: View {
             .listStyle(.insetGrouped)
             .navigationTitle("Favorite Jokes")
         }
-        .navigationViewStyle(StackNavigationViewStyle()) // Ensures full-screen layout
+        .navigationViewStyle(StackNavigationViewStyle()) 
     }
     
     private func deleteJoke(at offsets: IndexSet) {
@@ -30,4 +32,3 @@ struct FavoritesView: View {
         jokeVM.saveFavorites()
     }
 }
-

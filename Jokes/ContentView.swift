@@ -17,7 +17,10 @@ struct ContentView: View {
     @State private var selectedJoke = JokeType.general
     @State private var audioPlayer: AVAudioPlayer?
     @State private var soundNumber = 0
-    @State private var isSoundEnabled = false
+    
+    // Use @AppStorage to automatically persist the sound setting
+    @AppStorage("isSoundEnabled") private var isSoundEnabled: Bool = false
+    
     @State private var showError = false
     
     let totalSounds = 25
@@ -34,6 +37,7 @@ struct ContentView: View {
                     Label("Favorites", systemImage: "star.fill")
                 }
         }
+        // No need for onChange as @AppStorage handles persistence
     }
     
     // MARK: - Home View
@@ -123,7 +127,7 @@ struct ContentView: View {
                             .font(.title2)
                     }
                     .buttonStyle(.borderedProminent)
-                    .tint(.cyan) 
+                    .tint(.cyan)
                     .frame(maxWidth: .infinity)
                 }
                 .padding(.horizontal, scaledValue(17, scale: scaleFactor))
