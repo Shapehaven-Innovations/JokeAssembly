@@ -42,124 +42,135 @@ struct ContentView: View {
     
     // MARK: - Home View
     private var jokesHomeView: some View {
+        // Wrap the content in a GeometryReader for scale computation
         GeometryReader { geometry in
             let scaleFactor = min(geometry.size.width / 375, geometry.size.height / 667)
-            
-            VStack(alignment: .leading, spacing: scaledValue(17, scale: scaleFactor)) {
-                // Header
-                Text("Jokes! 😜")
-                    .font(.system(size: scaledValue(32, scale: scaleFactor), weight: .bold))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding(scaledValue(17, scale: scaleFactor))
-                    .background(Color.red)
-                    .cornerRadius(scaledValue(8, scale: scaleFactor))
-                
-                // Joke Content
+            // Use a ScrollView to allow pull-to-refresh
+            ScrollView {
                 VStack(alignment: .leading, spacing: scaledValue(17, scale: scaleFactor)) {
-                    Text("Setup:")
-                        .foregroundColor(.red)
-                        .bold()
-                        .font(.system(size: scaledValue(20, scale: scaleFactor)))
+                    // Header
+                    Text("Jokes! 😜")
+                        .font(.system(size: scaledValue(32, scale: scaleFactor), weight: .bold))
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(scaledValue(17, scale: scaleFactor))
+                        .background(Color.red)
+                        .cornerRadius(scaledValue(8, scale: scaleFactor))
                     
-                    Text(jokeVM.joke.setup)
-                        .font(.system(size: scaledValue(18, scale: scaleFactor)))
-                        .minimumScaleFactor(0.5)
-                        .fixedSize(horizontal: false, vertical: true)
-                    
-                    Group {
-                        Text("Punchline:")
+                    // Joke Content
+                    VStack(alignment: .leading, spacing: scaledValue(17, scale: scaleFactor)) {
+                        Text("Setup:")
                             .foregroundColor(.red)
                             .bold()
                             .font(.system(size: scaledValue(20, scale: scaleFactor)))
-                            .opacity(showPunchline ? 1 : 0)
                         
-                        Text(jokeVM.joke.punchline)
+                        Text(jokeVM.joke.setup)
                             .font(.system(size: scaledValue(18, scale: scaleFactor)))
                             .minimumScaleFactor(0.5)
                             .fixedSize(horizontal: false, vertical: true)
-                            .opacity(showPunchline ? 1 : 0)
+                        
+                        Group {
+                            Text("Punchline:")
+                                .foregroundColor(.red)
+                                .bold()
+                                .font(.system(size: scaledValue(20, scale: scaleFactor)))
+                                .opacity(showPunchline ? 1 : 0)
+                            
+                            Text(jokeVM.joke.punchline)
+                                .font(.system(size: scaledValue(18, scale: scaleFactor)))
+                                .minimumScaleFactor(0.5)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .opacity(showPunchline ? 1 : 0)
+                        }
+                        .animation(.easeInOut(duration: 0.3), value: showPunchline)
                     }
-                    .animation(.easeInOut(duration: 0.3), value: showPunchline)
-                }
-                .padding(.horizontal, scaledValue(17, scale: scaleFactor))
-                
-                Spacer()
-                
-                // Sound Toggle
-                Toggle("Enable Sound", isOn: $isSoundEnabled)
                     .padding(.horizontal, scaledValue(17, scale: scaleFactor))
-                
-                // Buttons Row - all the same size
-                HStack(spacing: 17) {
-                    // 1) Get Joke
-                    Button("Get Joke") {
-                        fetchNewJoke()
-                        withAnimation {
-                            showPunchline = false
-                        }
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.red)
-                    .font(.system(size: scaledValue(16, scale: scaleFactor), weight: .bold))
-                    .frame(maxWidth: .infinity)
                     
-                    // 2) Punchline
-                    Button("Punchline") {
-                        if isSoundEnabled {
-                            playSound(soundName: "\(soundNumber)")
-                            soundNumber = (soundNumber + 1) % totalSounds
-                        }
-                        withAnimation(UIAccessibility.isReduceMotionEnabled ? nil : .easeInOut(duration: 0.3)) {
-                            showPunchline = true
-                        }
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.red)
-                    .font(.system(size: scaledValue(16, scale: scaleFactor), weight: .bold))
-                    .frame(maxWidth: .infinity)
+                    Spacer(minLength: scaledValue(20, scale: scaleFactor))
                     
-                    // 3) Star icon (blue)
-                    Button {
-                        jokeVM.addToFavorites(jokeVM.joke)
-                    } label: {
-                        Image(systemName: "star.fill")
-                            .font(.title2)
+                    // Sound Toggle
+                    Toggle("Enable Sound", isOn: $isSoundEnabled)
+                        .padding(.horizontal, scaledValue(17, scale: scaleFactor))
+                    
+                    // Buttons Row - all the same size
+                    HStack(spacing: 17) {
+                        // 1) Get Joke
+                        Button("Get Joke") {
+                            fetchNewJoke()
+                            withAnimation {
+                                showPunchline = false
+                            }
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.red)
+                        .font(.system(size: scaledValue(16, scale: scaleFactor), weight: .bold))
+                        .frame(maxWidth: .infinity)
+                        
+                        // 2) Punchline
+                        Button("Punchline") {
+                            if isSoundEnabled {
+                                playSound(soundName: "\(soundNumber)")
+                                soundNumber = (soundNumber + 1) % totalSounds
+                            }
+                            withAnimation(UIAccessibility.isReduceMotionEnabled ? nil : .easeInOut(duration: 0.3)) {
+                                showPunchline = true
+                            }
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.red)
+                        .font(.system(size: scaledValue(16, scale: scaleFactor), weight: .bold))
+                        .frame(maxWidth: .infinity)
+                        
+                        // 3) Star icon (blue)
+                        Button {
+                            jokeVM.addToFavorites(jokeVM.joke)
+                        } label: {
+                            Image(systemName: "star.fill")
+                                .font(.title2)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.cyan)
+                        .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.cyan)
-                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, scaledValue(17, scale: scaleFactor))
+                    .padding(.bottom, scaledValue(17, scale: scaleFactor))
+                    
+                    // Joke Type Picker
+                    HStack {
+                        Text("Joke Type:")
+                            .bold()
+                            .foregroundColor(.red)
+                            .font(.system(size: scaledValue(18, scale: scaleFactor)))
+                        
+                        Spacer()
+                        
+                        Picker("", selection: $selectedJoke) {
+                            ForEach(JokeType.allCases, id: \.self) { jokeType in
+                                Text(formatJokeType(jokeType: jokeType))
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                        .frame(width: scaledValue(150, scale: scaleFactor))
+                    }
+                    .padding(.horizontal, scaledValue(17, scale: scaleFactor))
+                    .padding(.bottom, scaledValue(17, scale: scaleFactor))
                 }
-                .padding(.horizontal, scaledValue(17, scale: scaleFactor))
-                .padding(.bottom, scaledValue(17, scale: scaleFactor))
-                
-                // Joke Type Picker
-                HStack {
-                    Text("Joke Type:")
-                        .bold()
-                        .foregroundColor(.red)
-                        .font(.system(size: scaledValue(18, scale: scaleFactor)))
-                    
-                    Spacer()
-                    
-                    Picker("", selection: $selectedJoke) {
-                        ForEach(JokeType.allCases, id: \.self) { jokeType in
-                            Text(formatJokeType(jokeType: jokeType))
-                        }
-                    }
-                    .pickerStyle(MenuPickerStyle())
-                    .frame(width: scaledValue(150, scale: scaleFactor))
+                // Ensure the content fills the available height
+                .frame(minHeight: geometry.size.height)
+                .background(Color(UIColor.systemBackground))
+                // Attach the alert to the inner view
+                .alert("Error", isPresented: $showError) {
+                    Button("OK", role: .cancel) { }
+                } message: {
+                    Text("Failed to fetch a new joke. Please check your internet connection.")
                 }
-                .padding(.horizontal, scaledValue(17, scale: scaleFactor))
-                .padding(.bottom, scaledValue(17, scale: scaleFactor))
             }
-            .frame(width: geometry.size.width, height: geometry.size.height)
-            .background(Color(UIColor.systemBackground))
-            // Removed .onAppear { fetchNewJoke() } so a joke is only fetched on button tap.
-            .alert("Error", isPresented: $showError) {
-                Button("OK", role: .cancel) { }
-            } message: {
-                Text("Failed to fetch a new joke. Please check your internet connection.")
+            // The refreshable modifier lets users pull down to fetch a new joke.
+            .refreshable {
+                fetchNewJoke()
+                withAnimation {
+                    showPunchline = false
+                }
             }
         }
     }
