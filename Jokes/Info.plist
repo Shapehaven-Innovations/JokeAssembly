@@ -2,14 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UILaunchScreen</key>
-	<dict>
-		<key>UIImageName</key>
-		<string>launchscreen</string>
-		<key>UIImageRespectsSafeAreaInsets</key>
-		<true/>
-		<key>UILaunchScreen</key>
-		<dict/>
-	</dict>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen.storyboad</string>
 </dict>
 </plist>

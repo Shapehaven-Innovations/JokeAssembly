@@ -17,7 +17,7 @@
 		9A5B1DCC2E07668500894645 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B1DCB2E07668500894645 /* SoundManager.swift */; };
 		9A5B1DCE2E0766B500894645 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B1DCD2E0766B500894645 /* HomeView.swift */; };
 		9A5B1DD02E076CE200894645 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B1DCF2E076CE200894645 /* UIComponents.swift */; };
-		9A5B1DD22E079FFE00894645 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A5B1DD12E079FFE00894645 /* Launch Screen.storyboard */; };
+		9A5B1DD62E0855EF00894645 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A5B1DD52E0855EF00894645 /* LaunchScreen.storyboard */; };
 		9AF781E92D17900F00E9AEAB /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF781E82D17900800E9AEAB /* FavoritesView.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +34,7 @@
 		9A5B1DCB2E07668500894645 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		9A5B1DCD2E0766B500894645 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9A5B1DCF2E076CE200894645 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
-		9A5B1DD12E079FFE00894645 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		9A5B1DD52E0855EF00894645 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9AF781E82D17900800E9AEAB /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,7 +52,7 @@
 		9A0D918D2BF56FC3001DD8DB = {
 			isa = PBXGroup;
 			children = (
-				9A5B1DD12E079FFE00894645 /* Launch Screen.storyboard */,
+				9A5B1DD52E0855EF00894645 /* LaunchScreen.storyboard */,
 				9A0D91982BF56FC3001DD8DB /* Jokes */,
 				9A0D91972BF56FC3001DD8DB /* Products */,
 			);
@@ -151,7 +151,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A5B1DD22E079FFE00894645 /* Launch Screen.storyboard in Resources */,
+				9A5B1DD62E0855EF00894645 /* LaunchScreen.storyboard in Resources */,
 				9A0D91A12BF56FC5001DD8DB /* Preview Assets.xcassets in Resources */,
 				9A0D919E2BF56FC5001DD8DB /* Assets.xcassets in Resources */,
 			);
@@ -303,10 +303,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Jokes/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = P9Z5QB8965;
@@ -317,6 +318,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = SmirkOS;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -345,10 +347,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Jokes/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = P9Z5QB8965;
@@ -359,6 +362,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = SmirkOS;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
