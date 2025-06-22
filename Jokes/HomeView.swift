@@ -127,7 +127,7 @@ struct HomeView: View {
                 .padding(.horizontal)
 
                 // MARK: – Noise FX Toggle
-                Toggle("Noise FX", isOn: $noiseEnabled)
+                Toggle("Noise", isOn: $noiseEnabled)
                     .toggleStyle(SwitchToggleStyle(tint: K.Colors.neonBlue))
                     .font(.subheadline.monospaced())
                     .foregroundColor(.white)
