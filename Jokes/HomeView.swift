@@ -1,5 +1,5 @@
 // HomeView.swift
-// Jokes – SmirkOS Shell w/ High-Contrast White Bubbles
+// Jokes – SmirkOS Shell w/ Slower, Resetting Pulse on New Questions (iOS 17+)
 
 import SwiftUI
 
@@ -19,6 +19,8 @@ struct HomeView: View {
     @Binding var selectedCategory: JokeViewModel.JokeType
 
     @Binding var errorMessage: String?
+
+    @State private var pulse = false
 
     /// “Last login:” with current date/time
     private var lastLoginText: String {
@@ -53,6 +55,7 @@ struct HomeView: View {
                         ForEach(categories) { cat in
                             Button(cat.label) {
                                 selectedCategory = cat
+                                showPunchline = false
                                 onRefresh()
                             }
                         }
@@ -79,7 +82,7 @@ struct HomeView: View {
 
                 // MARK: – Q&A Bubbles
                 VStack(spacing: 24) {
-                    // Question Bubble
+                    // Question Bubble with pulsing
                     BubbleView(
                         attributedText: makeSetupAttributed(),
                         glowColor: K.Colors.neonBlue,
@@ -87,7 +90,8 @@ struct HomeView: View {
                     )
                     .tilt()
                     .offset(y: showPunchline ? -16 : 0)
-                    .animation(.easeOut(duration: 0.3), value: showPunchline)
+                    .scaleEffect(showPunchline ? 1 : (pulse ? 1.03 : 0.97))
+                    .animation(.easeInOut(duration: 4).repeatForever(autoreverses: true), value: pulse)
 
                     // Answer Bubble
                     if showPunchline {
@@ -103,18 +107,28 @@ struct HomeView: View {
                     }
                 }
                 .padding(.horizontal)
+                .onAppear { startPulse() }
+                .onChange(of: joke.id) {
+                    // zero-parameter closure: resets pulse on every new joke
+                    startPulse()
+                }
 
                 Spacer()
 
                 // MARK: – Controls
-                HStack(spacing: 16) {
-                    Button(action: onRefresh) {
-                        Label("Next", systemImage: "arrow.clockwise")
+                HStack(spacing: 24) {
+                    Button(action: {
+                        showPunchline = false
+                        onRefresh()
+                    }) {
+                        Image(systemName: "arrow.clockwise")
+                            .font(.title2)
                     }
                     .buttonStyle(NeonButtonStyle(neonColor: K.Colors.neonBlue))
 
                     Button(action: onReveal) {
-                        Label("Reveal", systemImage: "eye.fill")
+                        Image(systemName: "eye.fill")
+                            .font(.title2)
                     }
                     .buttonStyle(NeonButtonStyle(neonColor: K.Colors.neonPink))
 
@@ -148,6 +162,13 @@ struct HomeView: View {
                     dismissButton: .default(Text("OK"))
                 )
             }
+        }
+    }
+
+    private func startPulse() {
+        pulse = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            pulse = true
         }
     }
 
@@ -198,11 +219,12 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(
             joke: .init(
+                //id: UUID(),
                 type: "general",
                 setup: "Why did the developer go broke?",
                 punchline: "Because they used up all their cache."
             ),
-            showPunchline: .constant(true),
+            showPunchline: .constant(false),
             noiseEnabled:   .constant(true),
             noiseIndex:     .constant(0),
             onRefresh: {},
