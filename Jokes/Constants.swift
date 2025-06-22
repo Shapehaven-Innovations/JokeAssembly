@@ -1,23 +1,20 @@
-//
-//  K.swift
-//  Jokes
-//
-//  Created by user on 6/21/25.
-//
 
-
+// Constants.swift
+// Jokes – SmirkOS Refactor
 import SwiftUI
 
 enum K {
     static let apiBaseURL = URL(string: "https://joke.deno.dev")!
-    static let totalSounds = 25
+    static let totalSounds  = 25
 
-    // smirkOS palette
     struct Colors {
-        static let background = Color("smirkBackground")    // e.g. #0A0A0A
-        static let neonGreen = Color("smirkNeonGreen")      // e.g. #39FF14
-        static let neonPink = Color("smirkNeonPink")        // e.g. #FF2EC7
-        static let accent = neonGreen
-        static let card = Color("smirkCard")                // e.g. #1C1C1C
+        static let background = Color.black
+        static let accent     = Color.green.opacity(0.8)
+        static let card       = Color(.secondarySystemBackground).opacity(0.6)
+        // Neon palette
+        static let neonPink   = Color(red: 1.0, green: 0.0, blue: 1.0)
+        static let neonGreen  = Color(red: 0.22, green: 1.0, blue: 0.08)
+        static let neonBlue   = Color(red: 0.0, green: 1.0, blue: 1.0)
+        static let neonPurple = Color(red: 0.63, green: 0.13, blue: 0.94)
     }
 }

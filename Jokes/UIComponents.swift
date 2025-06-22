@@ -1,9 +1,3 @@
-//
-//  NeonButtonStyle.swift
-//  Jokes
-//
-//  Created by user on 6/21/25.
-//
 
 
 // UIComponents.swift

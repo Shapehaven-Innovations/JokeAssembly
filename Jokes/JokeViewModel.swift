@@ -1,71 +1,68 @@
-//  JokeViewModel.swift
 
+// JokeViewModel.swift
 
-import Foundation
+import SwiftUI
 
 @MainActor
-class JokeViewModel: ObservableObject {
-    @Published var joke = Joke()
-    @Published var favoriteJokes: [Joke] = []
-    
-    var urlString = "https://joke.deno.dev"
-    
+final class JokeViewModel: ObservableObject {
+    @Published var current: Joke = .init()
+    @Published var favorites: [Joke] = []
+    @Published var errorMessage: String?
+    @AppStorage("favoriteJokes") private var storedData: Data?
+
+    var category: JokeType = .general
+
     init() {
-        loadFavorites() // Load any saved favorites from UserDefaults
+        loadFavorites()
+        fetchJoke()
     }
-    
-    func getData() async {
-        print("🕸️ We are accessing the url \(urlString)")
-        
-        guard let url = URL(string: urlString) else {
-            print("😡 ERROR: Could not convert \(urlString) to a URL")
-            return
-        }
-        
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
+
+    func fetchJoke() {
+        errorMessage = nil
+        let url = K.apiBaseURL
+            .appendingPathComponent("type")
+            .appendingPathComponent(category.rawValue)
+            .appendingPathComponent("1")
+        Task {
             do {
+                let (data, _) = try await URLSession.shared.data(from: url)
                 let jokes = try JSONDecoder().decode([Joke].self, from: data)
-                joke = jokes.first ?? Joke()
-                print("Setup: \(joke.setup)")
-                print("Punchline: \(joke.punchline)")
+                current = jokes.first ?? .init()
             } catch {
-                print("😡 JSON ERROR: Could not decode JSON data: \(error.localizedDescription)")
+                errorMessage = "Could not load joke.\n\(error.localizedDescription)"
             }
-        } catch {
-            print("😡 ERROR: Could not get data from URL: \(urlString). \(error.localizedDescription)")
         }
     }
-    
-    // MARK: - Favorites Persistence
-    
-    func loadFavorites() {
-        guard let data = UserDefaults.standard.data(forKey: "favoriteJokes") else { return }
-        do {
-            let loadedJokes = try JSONDecoder().decode([Joke].self, from: data)
-            favoriteJokes = loadedJokes
-        } catch {
-            print("Unable to decode favorite jokes: \(error.localizedDescription)")
-        }
-    }
-    
-    func saveFavorites() {
-        do {
-            let data = try JSONEncoder().encode(favoriteJokes)
-            UserDefaults.standard.set(data, forKey: "favoriteJokes")
-        } catch {
-            print("Unable to encode favorite jokes: \(error.localizedDescription)")
-        }
-    }
-    
-    func addToFavorites(_ joke: Joke) {
-        // Prevent duplicate entries
-        if !favoriteJokes.contains(joke) {
-            favoriteJokes.append(joke)
-            saveFavorites()
-            print("✅ Joke added to favorites.")
+
+    func toggleFavorite() {
+        if favorites.contains(current) {
+            favorites.removeAll { $0 == current }
         } else {
-            print("ℹ️ Joke already in favorites.")
+            favorites.append(current)
         }
+        saveFavorites()
+    }
+
+    func isFavorited() -> Bool {
+        favorites.contains(current)
+    }
+
+    private func loadFavorites() {
+        guard let data = storedData,
+              let jokes = try? JSONDecoder().decode([Joke].self, from: data)
+        else { return }
+        favorites = jokes
+    }
+
+    private func saveFavorites() {
+        if let data = try? JSONEncoder().encode(favorites) {
+            storedData = data
+        }
+    }
+
+    enum JokeType: String, CaseIterable, Identifiable {
+        case general, knock_knock = "knock-knock", programming, anime, food, dad
+        var id: String { rawValue }
+        var label: String { rawValue.capitalized.replacingOccurrences(of: "_", with: "-") }
     }
 }

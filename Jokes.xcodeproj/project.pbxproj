@@ -13,6 +13,10 @@
 		9A0D91A12BF56FC5001DD8DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A0D91A02BF56FC5001DD8DB /* Preview Assets.xcassets */; };
 		9A0D91C52BF57398001DD8DB /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0D91C42BF57398001DD8DB /* Joke.swift */; };
 		9A0D91C72BF574FA001DD8DB /* JokeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0D91C62BF574FA001DD8DB /* JokeViewModel.swift */; };
+		9A5B1DCA2E07665A00894645 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B1DC92E07665A00894645 /* Constants.swift */; };
+		9A5B1DCC2E07668500894645 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B1DCB2E07668500894645 /* SoundManager.swift */; };
+		9A5B1DCE2E0766B500894645 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B1DCD2E0766B500894645 /* HomeView.swift */; };
+		9A5B1DD02E076CE200894645 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B1DCF2E076CE200894645 /* UIComponents.swift */; };
 		9AF781E92D17900F00E9AEAB /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF781E82D17900800E9AEAB /* FavoritesView.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +29,10 @@
 		9A0D91C32BF5701E001DD8DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9A0D91C42BF57398001DD8DB /* Joke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joke.swift; sourceTree = "<group>"; };
 		9A0D91C62BF574FA001DD8DB /* JokeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeViewModel.swift; sourceTree = "<group>"; };
+		9A5B1DC92E07665A00894645 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9A5B1DCB2E07668500894645 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		9A5B1DCD2E0766B500894645 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		9A5B1DCF2E076CE200894645 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
 		9AF781E82D17900800E9AEAB /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,6 +66,10 @@
 		9A0D91982BF56FC3001DD8DB /* Jokes */ = {
 			isa = PBXGroup;
 			children = (
+				9A5B1DCF2E076CE200894645 /* UIComponents.swift */,
+				9A5B1DCD2E0766B500894645 /* HomeView.swift */,
+				9A5B1DCB2E07668500894645 /* SoundManager.swift */,
+				9A5B1DC92E07665A00894645 /* Constants.swift */,
 				9A0D91C32BF5701E001DD8DB /* Info.plist */,
 				9A0D91992BF56FC3001DD8DB /* JokesApp.swift */,
 				9A0D91C42BF57398001DD8DB /* Joke.swift */,
@@ -151,7 +163,11 @@
 				9AF781E92D17900F00E9AEAB /* FavoritesView.swift in Sources */,
 				9A0D919C2BF56FC3001DD8DB /* ContentView.swift in Sources */,
 				9A0D919A2BF56FC3001DD8DB /* JokesApp.swift in Sources */,
+				9A5B1DCA2E07665A00894645 /* Constants.swift in Sources */,
+				9A5B1DD02E076CE200894645 /* UIComponents.swift in Sources */,
 				9A0D91C52BF57398001DD8DB /* Joke.swift in Sources */,
+				9A5B1DCE2E0766B500894645 /* HomeView.swift in Sources */,
+				9A5B1DCC2E07668500894645 /* SoundManager.swift in Sources */,
 				9A0D91C72BF574FA001DD8DB /* JokeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,10 +302,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Jokes/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = P9Z5QB8965;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = P9Z5QB8965;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jokes/Info.plist;
@@ -306,6 +323,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "ShapehavenInnovations-Jokes";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "ShapehavenInnovations-Jokes";
+				REGISTER_APP_GROUPS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -320,10 +343,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Jokes/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = P9Z5QB8965;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = P9Z5QB8965;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jokes/Info.plist;
@@ -340,6 +364,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "ShapehavenInnovations-Jokes";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "ShapehavenInnovations-Jokes";
+				REGISTER_APP_GROUPS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
