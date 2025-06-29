@@ -60,6 +60,12 @@ final class JokeViewModel: ObservableObject {
         }
     }
 
+    // Add this function:
+    func deleteFavorite(at offsets: IndexSet) {
+        favorites.remove(atOffsets: offsets)
+        saveFavorites()
+    }
+
     enum JokeType: String, CaseIterable, Identifiable {
         case general, knock_knock = "knock-knock", programming, anime, food, dad
         var id: String { rawValue }

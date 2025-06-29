@@ -1,17 +1,14 @@
-// FavoritesView.swift
-// Jokes – Neon Favorites List (Fixed Contrast, White Large Title)
-
 import SwiftUI
 
 struct FavoritesView: View {
     let favorites: [Joke]
-    let onDelete: () -> Void
+    let onDelete: (IndexSet) -> Void  // Accept IndexSet
 
-    init(favorites: [Joke], onDelete: @escaping () -> Void) {
+    init(favorites: [Joke], onDelete: @escaping (IndexSet) -> Void) {
         self.favorites = favorites
         self.onDelete = onDelete
 
-        // Configure UINavigationBarAppearance for both large & inline titles
+        // UINavigationBar styling as before...
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -25,10 +22,7 @@ struct FavoritesView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                // Darkened SmirkOS background
-                K.Colors.background
-                    .opacity(0.8)
-                    .ignoresSafeArea()
+                K.Colors.background.opacity(0.8).ignoresSafeArea()
 
                 if favorites.isEmpty {
                     Text("No favorites yet.\nTap ⭐️ on a joke to save it.")
@@ -49,19 +43,15 @@ struct FavoritesView: View {
                                     .foregroundColor(K.Colors.neonPink)
                             }
                             .padding()
-                            .background(
-                                // Solid dark card for max contrast
-                                Color.black.opacity(0.6)
-                            )
+                            .background(Color.black.opacity(0.6))
                             .cornerRadius(12)
                             .overlay(
-                                // Neon outline
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(K.Colors.accent, lineWidth: 1)
                             )
                             .listRowBackground(Color.clear)
                         }
-                        .onDelete { _ in onDelete() }
+                        .onDelete(perform: onDelete) // Correct signature
                     }
                     .listStyle(.plain)
                     .scrollContentBackground(.hidden)
@@ -77,14 +67,10 @@ struct FavoritesView_Previews: PreviewProvider {
     static var previews: some View {
         FavoritesView(
             favorites: [
-                Joke(type: "general",
-                     setup: "Why do wizards clean their teeth three times a day?",
-                     punchline: "To prevent bat breath!"),
-                Joke(type: "dad",
-                     setup: "I'm reading a book on anti-gravity…",
-                     punchline: "It's impossible to put down!")
+                Joke(type: "general", setup: "Why do wizards clean their teeth three times a day?", punchline: "To prevent bat breath!"),
+                Joke(type: "dad", setup: "I'm reading a book on anti-gravity…", punchline: "It's impossible to put down!")
             ],
-            onDelete: {}
+            onDelete: { _ in }
         )
         .preferredColorScheme(.dark)
     }

@@ -18,8 +18,24 @@
 		9A5B1DCE2E0766B500894645 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B1DCD2E0766B500894645 /* HomeView.swift */; };
 		9A5B1DD02E076CE200894645 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B1DCF2E076CE200894645 /* UIComponents.swift */; };
 		9A5B1DD62E0855EF00894645 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A5B1DD52E0855EF00894645 /* LaunchScreen.storyboard */; };
+		9A5B81092E108B9E005D9163 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B81082E108B9E005D9163 /* AppDelegate.swift */; };
+		9A5B810B2E108BD7005D9163 /* NativeAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B810A2E108BD7005D9163 /* NativeAdView.swift */; };
+		9A5B81192E11A5DF005D9163 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 9A5B81182E11A5DF005D9163 /* GoogleMobileAds */; };
 		9AF781E92D17900F00E9AEAB /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF781E82D17900800E9AEAB /* FavoritesView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9A5B811C2E11A84B005D9163 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A0D91962BF56FC3001DD8DB /* Jokes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jokes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,6 +51,8 @@
 		9A5B1DCD2E0766B500894645 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9A5B1DCF2E076CE200894645 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
 		9A5B1DD52E0855EF00894645 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9A5B81082E108B9E005D9163 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9A5B810A2E108BD7005D9163 /* NativeAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAdView.swift; sourceTree = "<group>"; };
 		9AF781E82D17900800E9AEAB /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -43,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A5B81192E11A5DF005D9163 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				9A5B1DCF2E076CE200894645 /* UIComponents.swift */,
+				9A5B810A2E108BD7005D9163 /* NativeAdView.swift */,
 				9A5B1DCD2E0766B500894645 /* HomeView.swift */,
 				9A5B1DCB2E07668500894645 /* SoundManager.swift */,
 				9A5B1DC92E07665A00894645 /* Constants.swift */,
@@ -78,6 +98,7 @@
 				9A0D91C42BF57398001DD8DB /* Joke.swift */,
 				9A0D91C62BF574FA001DD8DB /* JokeViewModel.swift */,
 				9A0D919B2BF56FC3001DD8DB /* ContentView.swift */,
+				9A5B81082E108B9E005D9163 /* AppDelegate.swift */,
 				9AF781E82D17900800E9AEAB /* FavoritesView.swift */,
 				9A0D919D2BF56FC5001DD8DB /* Assets.xcassets */,
 				9A0D919F2BF56FC5001DD8DB /* Preview Content */,
@@ -103,6 +124,7 @@
 				9A0D91922BF56FC3001DD8DB /* Sources */,
 				9A0D91932BF56FC3001DD8DB /* Frameworks */,
 				9A0D91942BF56FC3001DD8DB /* Resources */,
+				9A5B811C2E11A84B005D9163 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -121,7 +143,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					9A0D91952BF56FC3001DD8DB = {
 						CreatedOnToolsVersion = 15.3;
@@ -137,6 +159,9 @@
 				Base,
 			);
 			mainGroup = 9A0D918D2BF56FC3001DD8DB;
+			packageReferences = (
+				9A5B81172E11A5DF005D9163 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			productRefGroup = 9A0D91972BF56FC3001DD8DB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -167,11 +192,13 @@
 				9AF781E92D17900F00E9AEAB /* FavoritesView.swift in Sources */,
 				9A0D919C2BF56FC3001DD8DB /* ContentView.swift in Sources */,
 				9A0D919A2BF56FC3001DD8DB /* JokesApp.swift in Sources */,
+				9A5B810B2E108BD7005D9163 /* NativeAdView.swift in Sources */,
 				9A5B1DCA2E07665A00894645 /* Constants.swift in Sources */,
 				9A5B1DD02E076CE200894645 /* UIComponents.swift in Sources */,
 				9A0D91C52BF57398001DD8DB /* Joke.swift in Sources */,
 				9A5B1DCE2E0766B500894645 /* HomeView.swift in Sources */,
 				9A5B1DCC2E07668500894645 /* SoundManager.swift in Sources */,
+				9A5B81092E108B9E005D9163 /* AppDelegate.swift in Sources */,
 				9A0D91C72BF574FA001DD8DB /* JokeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,6 +435,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9A5B81172E11A5DF005D9163 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9A5B81182E11A5DF005D9163 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9A5B81172E11A5DF005D9163 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9A0D918E2BF56FC3001DD8DB /* Project object */;
 }

@@ -1,12 +1,11 @@
 // ContentView.swift
 // Jokes – SmirkOS Shell (w/ Noise FX)
 
+
 import SwiftUI
 
 struct ContentView: View {
     @StateObject private var vm = JokeViewModel()
-
-    /// Now controls your “Noise FX” (was soundEnabled)
     @AppStorage("noiseEnabled") private var noiseEnabled = true
     @State private var noiseIndex = 0
     @State private var showPunchline = false
@@ -49,7 +48,7 @@ struct ContentView: View {
                 AppWindow(title: "SmirkOS — Favorites") {
                     FavoritesView(
                         favorites: vm.favorites,
-                        onDelete: vm.toggleFavorite
+                        onDelete: vm.deleteFavorite
                     )
                 }
                 .tabItem {
@@ -67,4 +66,3 @@ struct ContentView_Previews: PreviewProvider {
             .preferredColorScheme(.dark)
     }
 }
-

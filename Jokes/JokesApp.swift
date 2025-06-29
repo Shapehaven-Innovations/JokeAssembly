@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct JokesApp: App {
+    // Register AppDelegate for SDK initialization
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     var body: some Scene {
         WindowGroup {
             ContentView()
