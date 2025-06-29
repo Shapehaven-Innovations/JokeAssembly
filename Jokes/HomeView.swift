@@ -59,7 +59,7 @@ struct HomeView: View {
 
             // Inline Native Ad
             NativeInlineAdView(adUnitID: "ca-app-pub-9596111320016039/4980818149")
-                .frame(height: 100)
+                .frame(height: 250)
                 .padding(.vertical, 8)
 
             Spacer()
